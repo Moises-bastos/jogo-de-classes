@@ -1,0 +1,49 @@
+alert("BEM VINDO AO JOGO DE PERGUNTAS E RESPOSTAS!");
+class pergunta{
+    enunciado:string;
+    opcoes:string[];
+    respostacorreta:number;
+
+    constructor(enunciado:string, opcoes:string[], respostacorreta:number) {
+        this.enunciado = enunciado;
+        this.opcoes = opcoes;
+        this.respostacorreta = respostacorreta;
+    }
+
+    mostrar(): string{
+        let texto = this.enunciado;
+        for(let i=0; i< this.opcoes.length; i++){
+            texto = texto + (i+1) + "-" + this.opcoes[i];
+        }
+        return(texto);
+    }
+    verificar(resposta: number):boolean {
+        return resposta=== this.respostacorreta;
+    }
+}
+
+let p1 = new pergunta("Qual é a capital do Brasil?", ["São Paulo", "Brasília", "Rio de Janeiro"], 2);
+let p2 = new pergunta("Qual o maior oceano do mundo?", ["Atlântico", "Índico", "Pacífico"], 3);
+let p3 = new pergunta("Quantos estados tem o Brasil?", [" 26 ", " 28 ", " 27  "], 3);
+let p4 = new pergunta("Qual a raiz quadrada de 81?", [" 8 ", " 9 ", " 6 "], 2);
+let p5 = new pergunta("Qual a capital do Piauí?", ["Barras", "Piripiri", "Teresina"], 3);
+let p6 = new pergunta("Qual o maior time do Brasil?", ["Santos", "São Paulo", "Flamengo"], 3);
+let p7 = new pergunta("Quantos estados físicos tem a água?", [" 2 ", " 5 ", " 3 "], 3);
+let p8 = new pergunta("Qual a matéria mais resistente da natureza?", ["Teia de Aranha", "Rocha", "Madeira"], 1);
+let p9 = new pergunta("Qual o maior planeta do sistema solar?", ["Terra", "Marte", "Júpiter"], 3);
+let p10 = new pergunta("Qual linguagem é usada na web?", ["Python", "JavaScript", "C++"], 2);
+
+let perguntas: pergunta[]=[p1, p2, p3, p4, p5, p6, p7, p8, p9, p10,];
+let pontos = 0;
+
+for( let i=0; i<perguntas.length; i++){
+    let respostas = Number(prompt(perguntas[i].mostrar()));
+    if (perguntas[i].verificar(respostas)) {
+        alert("Resposta certa!");
+        pontos = pontos + 1;
+    } else {
+        alert("Resposta errada!");
+    }
+}
+
+alert("Fim do jogo! Você acertou " + pontos + " de " + perguntas.length);
